@@ -10,6 +10,7 @@
     <string name="common_login_remember_me">Remember me</string>
     <string name="common_login_forgot_password">Forgot password?</string>
 
+    <!-- Validation errors -->
     <string name="common_login_error_contact_required">
         Enter email or phone number
     </string>

@@ -7,6 +7,7 @@
     android:padding="24dp"
     tools:context=".CommonLoginActivity">
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/imageLogo"
         android:layout_width="96dp"
@@ -18,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Title -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="0dp"
@@ -30,6 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Subtitle -->
     <TextView
         android:id="@+id/textSubtitle"
         android:layout_width="0dp"
@@ -42,6 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -60,6 +64,7 @@
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Phone -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPhone"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -78,6 +83,7 @@
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Password -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -97,6 +103,7 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Remember me & Forgot password -->
     <LinearLayout
         android:id="@+id/rowOptions"
         android:layout_width="0dp"
@@ -127,6 +134,7 @@
             android:textColor="?attr/colorPrimary" />
     </LinearLayout>
 
+    <!-- Login button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"

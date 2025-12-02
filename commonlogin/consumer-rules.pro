@@ -1,1 +1,1 @@
-# No special consumer ProGuard rules required.
+# No special consumer ProGuard rules for this library.

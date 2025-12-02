@@ -28,21 +28,29 @@ class CommonLoginActivity : AppCompatActivity() {
         val subtitle = intent.getStringExtra(EXTRA_SUBTITLE_TEXT)
         val loginButtonText = intent.getStringExtra(EXTRA_LOGIN_BUTTON_TEXT)
 
-        val showRememberMe = intent.getBooleanExtra(EXTRA_SHOW_REMEMBER_ME, true)
-        val showForgotPassword = intent.getBooleanExtra(EXTRA_SHOW_FORGOT_PASSWORD, true)
-        val enableEmail = intent.getBooleanExtra(EXTRA_ENABLE_EMAIL, true)
-        val enablePhone = intent.getBooleanExtra(EXTRA_ENABLE_PHONE, true)
+        val showRememberMe =
+            intent.getBooleanExtra(EXTRA_SHOW_REMEMBER_ME, true)
+        val showForgotPassword =
+            intent.getBooleanExtra(EXTRA_SHOW_FORGOT_PASSWORD, true)
+
+        val enableEmail =
+            intent.getBooleanExtra(EXTRA_ENABLE_EMAIL, true)
+        val enablePhone =
+            intent.getBooleanExtra(EXTRA_ENABLE_PHONE, true)
 
         if (logoResId != 0) {
             binding.imageLogo.setImageResource(logoResId)
         }
 
         binding.textTitle.text = title ?: getString(R.string.common_login_title)
-        binding.textSubtitle.text = subtitle ?: getString(R.string.common_login_subtitle)
-        binding.btnLogin.text = loginButtonText ?: getString(R.string.common_login_button_text)
+        binding.textSubtitle.text =
+            subtitle ?: getString(R.string.common_login_subtitle)
+        binding.btnLogin.text =
+            loginButtonText ?: getString(R.string.common_login_button_text)
 
         binding.cbRememberMe.isVisible = showRememberMe
         binding.tvForgotPassword.isVisible = showForgotPassword
+
         binding.tilEmail.isVisible = enableEmail
         binding.tilPhone.isVisible = enablePhone
     }
@@ -81,10 +89,12 @@ class CommonLoginActivity : AppCompatActivity() {
         val phone = binding.etPhone.text?.toString()?.trim().orEmpty()
         val password = binding.etPassword.text?.toString().orEmpty()
 
+        // Clear old errors
         binding.tilEmail.error = null
         binding.tilPhone.error = null
         binding.tilPassword.error = null
 
+        // At least one of email/phone must be entered (if visible)
         if (emailEnabled && phoneEnabled) {
             if (email.isEmpty() && phone.isEmpty()) {
                 val msg = getString(R.string.common_login_error_contact_required)
@@ -94,37 +104,50 @@ class CommonLoginActivity : AppCompatActivity() {
             }
         } else if (emailEnabled) {
             if (email.isEmpty()) {
-                binding.tilEmail.error = getString(R.string.common_login_error_contact_required)
+                binding.tilEmail.error =
+                    getString(R.string.common_login_error_contact_required)
                 valid = false
             }
         } else if (phoneEnabled) {
             if (phone.isEmpty()) {
-                binding.tilPhone.error = getString(R.string.common_login_error_contact_required)
+                binding.tilPhone.error =
+                    getString(R.string.common_login_error_contact_required)
                 valid = false
             }
         }
 
+        // Email format check (if not empty)
         if (emailEnabled && email.isNotEmpty()) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.tilEmail.error = getString(R.string.common_login_error_email_invalid)
+                binding.tilEmail.error =
+                    getString(R.string.common_login_error_email_invalid)
                 valid = false
             }
         }
 
+        // Phone format check (simple)
         if (phoneEnabled && phone.isNotEmpty()) {
             if (!Patterns.PHONE.matcher(phone).matches() || phone.length < 7) {
-                binding.tilPhone.error = getString(R.string.common_login_error_phone_invalid)
+                binding.tilPhone.error =
+                    getString(R.string.common_login_error_phone_invalid)
                 valid = false
             }
         }
 
-        val minPasswordLength = intent.getIntExtra(EXTRA_MIN_PASSWORD_LENGTH, DEFAULT_MIN_PASSWORD_LENGTH)
+        val minPasswordLength = intent.getIntExtra(
+            EXTRA_MIN_PASSWORD_LENGTH,
+            DEFAULT_MIN_PASSWORD_LENGTH
+        )
 
         if (password.isEmpty()) {
-            binding.tilPassword.error = getString(R.string.common_login_error_password_required)
+            binding.tilPassword.error =
+                getString(R.string.common_login_error_password_required)
             valid = false
         } else if (password.length < minPasswordLength) {
-            binding.tilPassword.error = getString(R.string.common_login_error_password_too_short, minPasswordLength)
+            binding.tilPassword.error = getString(
+                R.string.common_login_error_password_too_short,
+                minPasswordLength
+            )
             valid = false
         }
 
@@ -147,7 +170,8 @@ class CommonLoginActivity : AppCompatActivity() {
 
         if (emailEnabled && email.isNotEmpty()) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.tilEmail.error = getString(R.string.common_login_error_email_invalid)
+                binding.tilEmail.error =
+                    getString(R.string.common_login_error_email_invalid)
                 valid = false
             } else {
                 contactValue = email
@@ -155,13 +179,15 @@ class CommonLoginActivity : AppCompatActivity() {
             }
         } else if (phoneEnabled && phone.isNotEmpty()) {
             if (!Patterns.PHONE.matcher(phone).matches() || phone.length < 7) {
-                binding.tilPhone.error = getString(R.string.common_login_error_phone_invalid)
+                binding.tilPhone.error =
+                    getString(R.string.common_login_error_phone_invalid)
                 valid = false
             } else {
                 contactValue = phone
                 contactType = CONTACT_TYPE_PHONE
             }
         } else {
+            // nothing entered
             val msg = getString(R.string.common_login_error_contact_required)
             if (emailEnabled) binding.tilEmail.error = msg
             if (phoneEnabled) binding.tilPhone.error = msg
@@ -181,6 +207,7 @@ class CommonLoginActivity : AppCompatActivity() {
     companion object {
         private const val DEFAULT_MIN_PASSWORD_LENGTH = 6
 
+        // Config extras
         const val EXTRA_LOGO_RES_ID = "extra_logo_res_id"
         const val EXTRA_TITLE_TEXT = "extra_title_text"
         const val EXTRA_SUBTITLE_TEXT = "extra_subtitle_text"
@@ -191,11 +218,13 @@ class CommonLoginActivity : AppCompatActivity() {
         const val EXTRA_ENABLE_EMAIL = "extra_enable_email"
         const val EXTRA_ENABLE_PHONE = "extra_enable_phone"
 
+        // Result extras
         const val RESULT_EMAIL = "result_email"
         const val RESULT_PHONE = "result_phone"
         const val RESULT_PASSWORD = "result_password"
         const val RESULT_REMEMBER_ME = "result_remember_me"
 
+        // Forgot password result
         const val RESULT_CONTACT_VALUE = "result_contact_value"
         const val RESULT_CONTACT_TYPE = "result_contact_type"
         const val CONTACT_TYPE_EMAIL = "email"
@@ -203,6 +232,9 @@ class CommonLoginActivity : AppCompatActivity() {
 
         const val RESULT_FORGOT_PASSWORD: Int = Activity.RESULT_FIRST_USER + 100
 
+        /**
+         * Helper to create configured Intent for any app.
+         */
         fun createIntent(
             context: Context,
             logoResId: Int? = null,
