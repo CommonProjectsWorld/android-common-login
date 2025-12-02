@@ -4,11 +4,11 @@ apply plugin: 'maven-publish'
 
 android {
     namespace "com.common.login"
-    compileSdk 35
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdk 21
-        targetSdk 35
+        minSdkVersion 21
+        targetSdkVersion 34
 
         versionCode 1
         versionName "1.0.0"
@@ -43,10 +43,10 @@ android {
 }
 
 dependencies {
-    implementation "androidx.core:core-ktx:1.13.1"
-    implementation "androidx.appcompat:appcompat:1.7.0"
-    implementation "com.google.android.material:material:1.12.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation "com.google.android.material:material:1.4.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
 }
 
 // Publishing configuration so JitPack can publish an AAR that matches:
@@ -54,7 +54,7 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
+            create("release", MavenPublication) {
                 from components.release
 
                 groupId = "com.github.CommonProjectsWorld"
