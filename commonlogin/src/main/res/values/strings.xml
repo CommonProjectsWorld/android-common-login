@@ -1,0 +1,29 @@
+<resources>
+    <string name="common_login_logo_content_desc">App logo</string>
+    <string name="common_login_title">Welcome</string>
+    <string name="common_login_subtitle">Sign in to continue</string>
+
+    <string name="common_login_email_hint">Email</string>
+    <string name="common_login_phone_hint">Phone number</string>
+    <string name="common_login_password_hint">Password</string>
+    <string name="common_login_button_text">Login</string>
+    <string name="common_login_remember_me">Remember me</string>
+    <string name="common_login_forgot_password">Forgot password?</string>
+
+    <!-- Validation errors -->
+    <string name="common_login_error_contact_required">
+        Enter email or phone number
+    </string>
+    <string name="common_login_error_email_invalid">
+        Please enter a valid email
+    </string>
+    <string name="common_login_error_phone_invalid">
+        Please enter a valid phone number
+    </string>
+    <string name="common_login_error_password_required">
+        Password is required
+    </string>
+    <string name="common_login_error_password_too_short">
+        Password must be at least %1$d characters
+    </string>
+</resources>
